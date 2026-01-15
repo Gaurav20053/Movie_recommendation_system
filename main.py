@@ -5,13 +5,15 @@ import pickle
 import requests
 import os
 import urllib.request
+import gdown
+
 
 API_KEY = os.getenv("TMDB_API_KEY")
+
 SIMILARITY_PATH = "similarity.pkl"
 if not os.path.exists(SIMILARITY_PATH):
     url = "https://drive.google.com/uc?id=1g2v50KQSrPKL9QscZCDtyZcWmoC3ZjuE"
-    urllib.request.urlretrieve(url, SIMILARITY_PATH)
-
+    gdown.download(url, SIMILARITY_PATH, quiet=False)
     similarity = pickle.load(open("similarity.pkl", "rb"))
 
 
