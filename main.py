@@ -4,8 +4,16 @@ import pandas as pd
 import pickle
 import requests
 import os
+import urllib.request
 
 API_KEY = os.getenv("TMDB_API_KEY")
+SIMILARITY_PATH = "similarity.pkl"
+if not os.path.exists(SIMILARITY_PATH):
+    url = "https://drive.google.com/uc?id=1g2v50KQSrPKL9QscZCDtyZcWmoC3ZjuE"
+    urllib.request.urlretrieve(url, SIMILARITY_PATH)
+
+    similarity = pickle.load(open("similarity.pkl", "rb"))
+
 
 def fetch_poster(movie_id):
     response = requests.get(
