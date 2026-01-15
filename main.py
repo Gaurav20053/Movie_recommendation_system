@@ -15,6 +15,12 @@ if not os.path.exists(SIMILARITY_PATH):
     url = "https://drive.google.com/uc?id=1g2v50KQSrPKL9QscZCDtyZcWmoC3ZjuE"
     gdown.download(url, SIMILARITY_PATH, quiet=False)
     similarity = pickle.load(open("similarity.pkl", "rb"))
+    @st.cache_resource
+    def load_similarity():
+        return pickle.load(open("similarity.pkl", "rb"))
+
+
+    similarity = load_similarity()
 
 
 def fetch_poster(movie_id):
